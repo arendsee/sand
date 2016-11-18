@@ -1,11 +1,11 @@
-Package: sand
+Package: sandr
 Type: Package
 Title: A framework for small data
 Version: 0.0.0
 Author: Zebulun Arendsee
 Maintainer: Zebulun Arendsee <arendsee@iastate.edu>
-URL: https://github.com/arendsee/sand
-BugReports: https://github.com/arendsee/sand/issues
+URL: https://github.com/arendsee/sandr
+BugReports: https://github.com/arendsee/sandr/issues
 Description:
     The SAND format is a means of coupling tables of data with their column
     descriptions in a way that is both human and machine readable.  R has
