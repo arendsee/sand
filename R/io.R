@@ -74,11 +74,11 @@ read_sand <- function(
   sdesc <- rdesc(path=x)
 
   if(is.null(smeta)){
-    smeta <- data_frame(variable = names(sdata))
+    smeta <- tibble::data_frame(variable = names(sdata))
   }
 
   if(is.null(sdesc)){
-    sdesc <- "No description"
+    sdesc <- "No description\n"
   }
 
   if(nrow(smeta) != ncol(sdata)){
@@ -106,6 +106,9 @@ write_sand <- function(x, path) {
     stop(sprintf("Refusing to overwrite '%s'", path))
   }
   dir.create(path)
+
+  x <- as.sand(x)
+
   readr::write_file(attributes(x)$desc, file.path(path, 'README.md'))
   readr::write_tsv(attributes(x)$meta, file.path(path, 'COLUMN.tsv'))
   readr::write_tsv(x, file.path(path, paste0(basename(path), '.tsv', collapse="")))
