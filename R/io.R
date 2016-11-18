@@ -34,13 +34,16 @@ read_with_look_ <- function(find_, read_){
       }
     }
     f <- file.path(path, find_(x))
-    if(length(f) == 0){
-      stop("No suitable file found")
-    }
+
     if(length(f) > 1){
       stop(sprintf("Exected 1 file, found '%s'", paste0(f, collapse="', '")))
     }
-    read_(f)
+
+    if(length(f) == 0){
+      NULL
+    } else {
+      read_(f)
+    }
   }
 }
 
@@ -65,10 +68,31 @@ read_sand <- function(
   if(!dir.exists(x)){
     stop("x must be a directory")
   }
+
   sdata <- rdata(path=x)
-  attributes(sdata)$meta <- rmeta(path=x)
-  attributes(sdata)$desc <- rdesc(path=x)
+  smeta <- rmeta(path=x)
+  sdesc <- rdesc(path=x)
+
+  if(is.null(smeta)){
+    smeta <- data_frame(variable = names(sdata))
+  }
+
+  if(is.null(sdesc)){
+    sdesc <- "No description"
+  }
+
+  if(nrow(smeta) != ncol(sdata)){
+    stop("assertion failed: nrow(meta) == ncol(sdata)")
+  }
+
+  if(!setequal(smeta[[1]], names(sdata))){
+    stop("first column of COLUMN file != data header names")
+  }
+
+  attributes(sdata)$meta <- smeta
+  attributes(sdata)$desc <- sdesc
   class(sdata) <- c('sand', class(sdata))
+
   sdata
 }
 
