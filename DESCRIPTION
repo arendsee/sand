@@ -19,7 +19,8 @@ Imports:
     dplyr,
     readr,
     tibble,
-    magrittr
+    magrittr,
+    readxl
 Suggests:
     testthat,
     knitr,

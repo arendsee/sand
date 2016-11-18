@@ -7,21 +7,21 @@ find_meta_ <- function(x){
 }
 
 find_data_ <- function(x){
-  tabular_files <- x[ grepl('\\.(tsv|tab)', x) ]
+  tabular_files <- x[ grepl('\\.(tsv|tab|xls|xlsx)', x) ]
   meta_files <- find_meta_(x)
   setdiff(tabular_files, meta_files)
 }
 
-read_desc_ <- function(x){
+read_text_ <- function(x){
   readr::read_file(x) 
 }
 
-read_meta_ <- function(x){
-  readr::read_tsv(x)
-}
-
-read_data_ <- function(x){
-  readr::read_tsv(x)
+read_table_ <- function(x){
+  if(grepl('.*(.xls|.xlsx)$', x)){
+    readxl::read_excel(x)
+  } else {
+    readr::read_tsv(x)
+  }
 }
 
 read_with_look_ <- function(find_, read_){
@@ -47,9 +47,9 @@ read_with_look_ <- function(find_, read_){
   }
 }
 
-read_meta <- read_with_look_(find_meta_, read_meta_)
-read_data <- read_with_look_(find_data_, read_data_)
-read_desc <- read_with_look_(find_desc_, read_desc_)
+read_meta <- read_with_look_(find_meta_, read_table_)
+read_data <- read_with_look_(find_data_, read_table_)
+read_desc <- read_with_look_(find_desc_, read_text_)
 
 #' Read an unnested SAND directory
 #' 
