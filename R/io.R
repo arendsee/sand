@@ -18,10 +18,18 @@ read_text_ <- function(x){
 
 read_table_ <- function(x){
   if(grepl('.*(.xls|.xlsx)$', x)){
-    readxl::read_excel(x)
+    d <- readxl::read_excel(x)
+    if(nrow(d) == 65535 || nrow(d) == 1048576){
+      warning(paste(
+        "There are exactly", nrow(d), "rows in this file, since this is a",
+        "possible maximum for allowed number of rows in an excel file,",
+        "it is likely that the file is truncated."
+      ))
+    }
   } else {
-    readr::read_tsv(x)
+    d <- readr::read_tsv(x)
   }
+  d
 }
 
 read_with_look_ <- function(find_, read_){
