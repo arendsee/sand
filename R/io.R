@@ -7,7 +7,9 @@ find_meta_ <- function(x){
 }
 
 find_data_ <- function(x){
-  x[ grepl('\\.(tsv|tab)', x) & !find_meta_(x) ]
+  tabular_files <- x[ grepl('\\.(tsv|tab)', x) ]
+  meta_files <- find_meta_(x)
+  setdiff(tabular_files, meta_files)
 }
 
 read_desc_ <- function(x){
@@ -23,15 +25,15 @@ read_data_ <- function(x){
 }
 
 read_with_look_ <- function(find_, read_){
-  function(x, path=NA){
-    if(missing(x)){
+  function(x=NA, path=NA){
+    if(is.na(x)){
       if(!is.na(path)){
-        x <- list.files(x)
+        x <- list.files(path)
       } else {
         stop("You must include either x or path")
       }
     }
-    f <- find_(x)
+    f <- file.path(path, find_(x))
     if(length(f) == 0){
       stop("No suitable file found")
     }
@@ -63,9 +65,9 @@ read_sand <- function(
   if(!dir.exists(x)){
     stop("x must be a directory")
   }
-  sdata <- rdata(x)
-  attributes(sdata)$meta <- rmeta(x)
-  attributes(sdata)$desc <- rdesc(x)
+  sdata <- rdata(path=x)
+  attributes(sdata)$meta <- rmeta(path=x)
+  attributes(sdata)$desc <- rdesc(path=x)
   class(sdata) <- c('sand', class(sdata))
   sdata
 }
