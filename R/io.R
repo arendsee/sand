@@ -1,9 +1,9 @@
 find_desc_ <- function(x){
-  x[ grepl('^README', x) ]
+  x[ grepl('^readme', x, ignore.case=TRUE) ]
 }
 
 find_meta_ <- function(x){
-  x[ grepl('^COLUMN', x) ]
+  x[ grepl('^column', x, ignore.case=TRUE) ]
 }
 
 find_data_ <- function(x){
