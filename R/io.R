@@ -20,7 +20,12 @@ read_text_ <- function(x){
   readr::read_file(x) 
 }
 
-read_table_ <- function(x, has_header=TRUE, ...){
+read_table_ <- function(x, has_header=TRUE, col_names=has_header, ...){
+
+  if(has_header){
+    col_names <- TRUE 
+  }
+
   if(grepl('.*(.xls|.xlsx)$', x)){
     d <- readxl::read_excel(x)
     if(nrow(d) == 65535 || nrow(d) == 1048576){
@@ -31,7 +36,7 @@ read_table_ <- function(x, has_header=TRUE, ...){
       ))
     }
   } else {
-    d <- readr::read_tsv(x, col_names=has_header, ...)
+    d <- readr::read_tsv(x, col_names=col_names, ...)
   }
   d
 }
@@ -116,8 +121,8 @@ read_sand <- function(
     stype <- NULL
   }
 
-  sdata <- rdata(path=x, has_header=data_has_header, col_types=col_types)
   smeta <- rmeta(path=x, has_header=meta_has_header, col_names=c('variable', 'description'))
+  sdata <- rdata(path=x, has_header=data_has_header, col_names=smeta[[1]], col_types=col_types)
   sdesc <- rdesc(path=x)
 
   if(is.null(stype)){
@@ -134,14 +139,6 @@ read_sand <- function(
 
   if(nrow(smeta) != ncol(sdata)){
     stop("assertion failed: nrow(meta) == ncol(sdata)")
-  }
-
-  if(!data_has_header){
-    names(sdata) <- smeta[[1]]
-  }
-
-  if(!setequal(smeta[[1]], names(sdata))){
-    stop("first column of COLUMN file != data header names")
   }
 
   meta(sdata) <- smeta
