@@ -31,7 +31,7 @@ as.sand <- function(x){
 #' @rdname access
 #' @export
 smeta <- function(x){
-  attributes(x)$smeta
+  attributes(x)$meta
 }
 
 #' @rdname access
