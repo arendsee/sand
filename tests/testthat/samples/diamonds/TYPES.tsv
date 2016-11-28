@@ -1,0 +1,11 @@
+variable	primary_type
+carat	number
+cut	character
+color	factor(E,I,J)
+clarity	character
+depth	number
+table	number
+price	number
+x	number
+y	number
+z	number

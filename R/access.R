@@ -37,6 +37,12 @@ meta <- function(x){
 
 #' @rdname access
 #' @export
+type <- function(x){
+  as.data.frame(attributes(x)$type)
+}
+
+#' @rdname access
+#' @export
 field_info <- function(x, field){
   d <- meta(x)[meta(x)[[1]] == field, ] 
   for(name in names(d)){
@@ -48,6 +54,13 @@ field_info <- function(x, field){
 #' @export
 `meta<-` <- function(x, value){
   attributes(x)$meta <- value
+  x
+}
+
+#' @rdname access
+#' @export
+`type<-` <- function(x, value){
+  attributes(x)$type <- value
   x
 }
 

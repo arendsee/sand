@@ -5,7 +5,8 @@
 \title{Read an unnested SAND directory}
 \usage{
 read_sand(x, data_has_header = TRUE, meta_has_header = TRUE,
-  rdata = read_data, rdesc = read_desc, rmeta = read_meta)
+  type_has_header = TRUE, col_types = NULL, rdata = read_data,
+  rdesc = read_desc, rmeta = read_meta, rtype = read_type)
 }
 \arguments{
 \item{x}{directory name}
@@ -13,6 +14,8 @@ read_sand(x, data_has_header = TRUE, meta_has_header = TRUE,
 \item{data_has_header}{does the data file have headers?}
 
 \item{meta_has_header}{does the COLUMN file have headers?}
+
+\item{type_has_header}{does the TYPE file have headers?}
 
 \item{rdata}{main data file reader}
 
