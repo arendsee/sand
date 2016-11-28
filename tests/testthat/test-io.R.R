@@ -10,3 +10,29 @@ test_that(
     expect_equal(find_data_(files), "foo.tsv")
   }
 )
+
+test_that(
+  "reading diamonds",
+  {
+    expect_equal({d <- read_sand('samples/diamonds'); names(d)[1]}, 'carat')
+    expect_equal(d[[1]][1], 0.23)
+  }
+)
+
+test_that(
+  "reading diamonds without headers",
+  {
+    expect_equal(
+      {
+        d <- read_sand(
+          'samples/diamonds_no_header',
+          meta_has_header=FALSE,
+          data_has_header=FALSE
+        )
+        names(d)[1]
+      },
+      'carat'
+    )
+    expect_equal(d[[1]][1], 0.23)
+  }
+)
