@@ -1,6 +1,13 @@
 context("io.R")
 
 test_that(
+  "test type parsers",
+  {
+
+  }
+)
+
+test_that(
   "File finders work",
   {
     files <- c("aREADME", "README",  "COLUMN.tsv", "foo.tsv")

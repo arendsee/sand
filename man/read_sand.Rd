@@ -17,11 +17,15 @@ read_sand(x, data_has_header = TRUE, meta_has_header = TRUE,
 
 \item{type_has_header}{does the TYPE file have headers?}
 
+\item{col_types}{data types for each column (see readr documentation)}
+
 \item{rdata}{main data file reader}
 
 \item{rdesc}{description file reader}
 
 \item{rmeta}{metadata file reader}
+
+\item{rtype}{type file reader}
 }
 \value{
 a sand object

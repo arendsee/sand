@@ -20,37 +20,6 @@ read_text_ <- function(x){
   readr::read_file(x) 
 }
 
-format_types <- function(x){
-  factors <- stringr::str_detect(x, '^factor\\(')
-  x[factors] <-
-    stringr::str_replace(x[factors], 'factor', '') %>%
-    stringr::str_replace_all('[\'"()]', '') %>%
-    stringr::str_split('\\s*,\\s*') %>%
-    lapply(stringr::str_c, collapse="','") %>%
-    unlist %>%
-    sprintf(fmt="col_factor(c('%s'))") %>%
-    stringr::str_replace('\\(c\\(\'\'\\)\\)', '')
-  x[!factors] <- sprintf('col_%s()', x[!factors]) 
-  if(any(stringr::str_detect(x, '^col_factor\\(\\)$'))){
-    warning("All factors must specify levels, e.g. 'factor(A,B,C)', converting to character")
-    x <- stringr::str_replace_all(x, '^col_factor\\(\\)$', 'col_character()')
-  }
-  x
-}
-
-unformat_types <- function(x){
-  factors <- stringr::str_detect(x, '^col_factor\\(c\\(.*\\)\\)')
-  x[factors] <-
-    stringr::str_replace(x[factors], 'col_factor\\(c\\((.*)\\)\\)', '\\1') %>%
-    stringr::str_split('\\s*\',\\s*\'') %>%
-    lapply(stringr::str_c, collapse=",") %>%
-    unlist %>%
-    stringr::str_replace_all("'", '') %>%
-    sprintf(fmt="factor(%s)")
-  x[!factors] <- stringr::replace
-  x
-}
-
 read_table_ <- function(x, has_header=TRUE, ...){
   if(grepl('.*(.xls|.xlsx)$', x)){
     d <- readxl::read_excel(x)
@@ -114,9 +83,11 @@ read_type <- read_with_look_(find_type_, read_deviant_table_)
 #' @param data_has_header does the data file have headers?
 #' @param meta_has_header does the COLUMN file have headers?
 #' @param type_has_header does the TYPE file have headers?
+#' @param col_types data types for each column (see readr documentation)
 #' @param rdata main data file reader
 #' @param rdesc description file reader
 #' @param rmeta metadata file reader
+#' @param rtype type file reader
 #' @return a sand object
 #' @export
 read_sand <- function(

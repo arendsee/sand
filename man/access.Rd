@@ -9,6 +9,8 @@
 \alias{is.sand}
 \alias{meta}
 \alias{meta<-}
+\alias{type}
+\alias{type<-}
 \title{SAND access and assignment functions}
 \usage{
 is.sand(x)
@@ -17,9 +19,13 @@ as.sand(x)
 
 meta(x)
 
+type(x)
+
 field_info(x, field)
 
 meta(x) <- value
+
+type(x) <- value
 
 desc(x)
 

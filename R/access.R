@@ -21,8 +21,8 @@ as.sand <- function(x){
   if(is.data.frame(x)){
     x <- tibble::as_data_frame(x)
     class(x) <- c('sand', class(x))
-    smeta(x) <- tibble::data_frame(variable = names(x))
-    sdesc(x) <- "No description\n"
+    meta(x) <- tibble::data_frame(variable = names(x))
+    desc(x) <- "No description\n"
     return(x)
   }
 
