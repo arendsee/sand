@@ -119,8 +119,9 @@ read_sand <- function(
     stop("first column of COLUMN file != data header names")
   }
 
-  attributes(sdata)$meta <- smeta
-  attributes(sdata)$desc <- sdesc
+  meta(sdata) <- smeta
+  desc(sdata) <- sdesc
+
   class(sdata) <- c('sand', class(sdata))
 
   sdata

@@ -1,6 +1,7 @@
 #' SAND access and assignment functions
 #'
 #' @param x anything
+#' @param field a column name from the dataset
 #' @param value object on right side of assignment
 #' @name access
 NULL
@@ -30,26 +31,35 @@ as.sand <- function(x){
 
 #' @rdname access
 #' @export
-smeta <- function(x){
-  attributes(x)$meta
+meta <- function(x){
+  as.data.frame(attributes(x)$meta)
 }
 
 #' @rdname access
 #' @export
-`smeta<-` <- function(x, value){
+field_info <- function(x, field){
+  d <- meta(x)[meta(x)[[1]] == field, ] 
+  for(name in names(d)){
+    cat(sprintf('%s\n  %s\n', name, d[1, name]))
+  }
+}
+
+#' @rdname access
+#' @export
+`meta<-` <- function(x, value){
   attributes(x)$meta <- value
   x
 }
 
 #' @rdname access
 #' @export
-sdesc <- function(x){
+desc <- function(x){
   attributes(x)$desc
 }
 
 #' @rdname access
 #' @export
-`sdesc<-` <- function(x, value){
+`desc<-` <- function(x, value){
   attributes(x)$desc <- value
   x
 }

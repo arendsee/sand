@@ -3,27 +3,32 @@
 \name{access}
 \alias{access}
 \alias{as.sand}
+\alias{desc}
+\alias{desc<-}
+\alias{field_info}
 \alias{is.sand}
-\alias{sdesc}
-\alias{sdesc<-}
-\alias{smeta}
-\alias{smeta<-}
+\alias{meta}
+\alias{meta<-}
 \title{SAND access and assignment functions}
 \usage{
 is.sand(x)
 
 as.sand(x)
 
-smeta(x)
+meta(x)
 
-smeta(x) <- value
+field_info(x, field)
 
-sdesc(x)
+meta(x) <- value
 
-sdesc(x) <- value
+desc(x)
+
+desc(x) <- value
 }
 \arguments{
 \item{x}{anything}
+
+\item{field}{a column name from the dataset}
 
 \item{value}{object on right side of assignment}
 }
