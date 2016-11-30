@@ -5,5 +5,5 @@
 tags
 *.db
 *.sqlite
-
 .~lock.*
+inst/doc

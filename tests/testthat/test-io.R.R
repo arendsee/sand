@@ -1,9 +1,9 @@
 context("io.R")
 
 test_that(
-  "test type parsers",
+  "test basic inputs",
   {
-
+    expect_error(read_sand('hi'))
   }
 )
 
@@ -41,5 +41,18 @@ test_that(
       'carat'
     )
     expect_equal(d[[1]][1], 0.23)
+  }
+)
+
+test_that(
+  "can set data types",
+  {
+    expect_equal(
+      {
+        d <- read_sand('samples/diamonds', col_types='ccccnncnnn')
+        lapply(d, class)[[1]]
+      },
+      'character'
+    )
   }
 )
