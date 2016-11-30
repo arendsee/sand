@@ -15,4 +15,8 @@ SQLiteConnection
 \description{
 Open a SAND SQLite database
 }
+\seealso{
+Other io: \code{\link{read_sand}},
+  \code{\link{write_sand}}, \code{\link{write_to_db}}
+}
 

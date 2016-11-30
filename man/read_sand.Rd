@@ -11,13 +11,13 @@ read_sand(x, data_has_header = TRUE, meta_has_header = TRUE,
 \arguments{
 \item{x}{directory name}
 
-\item{data_has_header}{does the data file have headers?}
+\item{data_has_header}{whether data file has headers}
 
-\item{meta_has_header}{does the COLUMN file have headers?}
+\item{meta_has_header}{whether COLUMN file has headers}
 
-\item{type_has_header}{does the TYPE file have headers?}
+\item{type_has_header}{whether TYPE file has headers}
 
-\item{col_types}{data types for each column (see readr documentation)}
+\item{col_types}{data types for each column (see details)}
 
 \item{rdata}{main data file reader}
 
@@ -32,5 +32,9 @@ a sand object
 }
 \description{
 Read an unnested SAND directory
+}
+\seealso{
+Other io: \code{\link{open_sand_db}},
+  \code{\link{write_sand}}, \code{\link{write_to_db}}
 }
 

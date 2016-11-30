@@ -17,28 +17,36 @@ is.sand(x)
 
 as.sand(x)
 
+desc(x)
+
 meta(x)
 
 type(x)
 
-field_info(x, field)
+desc(x) <- value
 
 meta(x) <- value
 
 type(x) <- value
 
-desc(x)
-
-desc(x) <- value
+field_info(x, field)
 }
 \arguments{
 \item{x}{anything}
 
-\item{field}{a column name from the dataset}
-
 \item{value}{object on right side of assignment}
+
+\item{field}{a column name from the dataset}
 }
 \description{
-SAND access and assignment functions
+Functions for accessing elements of a SAND object, accessing and casting
+sand classes, and viewing documentation.
+}
+\details{
+\code{as.sand} is particularly noteworthy. Any data frame can be case as a
+sand object. Then it can be written into a SAND format data directory with
+the \code{write_sand} function. This will automatically generate default
+COLUMN.tsv and TYPE.tsv files. So this is the starting point for building a
+new SAND project.
 }
 
