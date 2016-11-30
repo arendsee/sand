@@ -80,7 +80,10 @@ type <- function(x){
 #' @rdname access
 #' @export
 field_info <- function(x, field){
-  d <- meta(x)[meta(x)[[1]] == field, ] 
+  if(!field %in% meta(x)[[1]]){
+    stop(sprintf("'%s' is not a field in '%s'", field, deparse(substitute(x))))
+  }
+  d <- as_data_frame(meta(x))[meta(x)[[1]] == field, ] 
   for(name in names(d)){
     cat(sprintf('%s\n  %s\n', name, d[1, name]))
   }
