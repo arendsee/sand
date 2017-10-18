@@ -1,17 +1,18 @@
 Package: sandr
 Type: Package
 Title: A framework for small data
-Version: 0.0.0
+Version: 0.1.0
 Author: Zebulun Arendsee
 Maintainer: Zebulun Arendsee <arendsee@iastate.edu>
 URL: https://github.com/arendsee/sandr
 BugReports: https://github.com/arendsee/sandr/issues
-Description: The SAND format is a means of coupling tables of data with
-    their column descriptions in a way that is both human and machine readable.
-    R has powerful tools for packaging and describing data, but sharing data as
-    Rdata objects is not very useful for non-R users. The sandr package includes
-    functions for validating, loading, and cleaning SAND data as well as methods for
-    translating between R data and SAND.
+Description:
+    The SAND format is a means of coupling tables of data with their column
+    descriptions in a way that is both human and machine readable.  R has
+    powerful tools for packaging and describing data, but sharing data as Rdata
+    objects is not very useful for non-R users. The sandr package includes
+    functions for validating, loading, and cleaning SAND data as well as
+    methods for translating between R data and SAND.
 License: GPL-3 | file LICENSE
 Depends:
     R (>= 3.2.0)
@@ -30,7 +31,7 @@ Suggests:
     covr
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 VignetteBuilder: knitr
 Collate:
     'access.R'
