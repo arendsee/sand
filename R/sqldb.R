@@ -1,10 +1,10 @@
-
 #' Write SAND object to SQLite database
 #' 
 #' @param x SAND object
 #' @param tblname name of new data table that will be created
 #' @param dbname name of SQLite database
 #' @return SQLiteConnection
+#' @family io
 #' @export
 write_to_db <- function(x, tblname=deparse(substitute(x)), dbname=":memory:"){
   db <- RSQLite::dbConnect(RSQLite::SQLite(), dbname=dbname)
@@ -17,6 +17,7 @@ write_to_db <- function(x, tblname=deparse(substitute(x)), dbname=":memory:"){
 #' @param dbname name of the sqlite database
 #' @return SQLiteConnection
 #' @export
+#' @family io
 open_sand_db <- function(dbname){
   RSQLite::dbConnect(RSQLite::SQLite(), dbname=dbname)
 }

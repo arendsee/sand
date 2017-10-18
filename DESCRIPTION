@@ -38,4 +38,4 @@ Collate:
     'io.R'
     'parsers.R'
     'sqldb.R'
-    'main.R'
+    'sandr.R'

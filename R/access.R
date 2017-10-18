@@ -1,5 +1,14 @@
 #' SAND access and assignment functions
 #'
+#' Functions for accessing elements of a SAND object, accessing and casting
+#' sand classes, and viewing documentation.
+#'
+#' \code{as.sand} is particularly noteworthy. Any data frame can be case as a
+#' sand object. Then it can be written into a SAND format data directory with
+#' the \code{write_sand} function. This will automatically generate default
+#' COLUMN.tsv and TYPE.tsv files. So this is the starting point for building a
+#' new SAND project.
+#'
 #' @param x anything
 #' @param field a column name from the dataset
 #' @param value object on right side of assignment
@@ -31,6 +40,12 @@ as.sand <- function(x){
 
 #' @rdname access
 #' @export
+desc <- function(x){
+  attributes(x)$desc
+}
+
+#' @rdname access
+#' @export
 meta <- function(x){
   as.data.frame(attributes(x)$meta)
 }
@@ -43,11 +58,9 @@ type <- function(x){
 
 #' @rdname access
 #' @export
-field_info <- function(x, field){
-  d <- meta(x)[meta(x)[[1]] == field, ] 
-  for(name in names(d)){
-    cat(sprintf('%s\n  %s\n', name, d[1, name]))
-  }
+`desc<-` <- function(x, value){
+  attributes(x)$desc <- value
+  x
 }
 
 #' @rdname access
@@ -66,13 +79,12 @@ field_info <- function(x, field){
 
 #' @rdname access
 #' @export
-desc <- function(x){
-  attributes(x)$desc
-}
-
-#' @rdname access
-#' @export
-`desc<-` <- function(x, value){
-  attributes(x)$desc <- value
-  x
+field_info <- function(x, field){
+  if(!field %in% meta(x)[[1]]){
+    stop(sprintf("'%s' is not a field in '%s'", field, deparse(substitute(x))))
+  }
+  d <- tibble::as_data_frame(meta(x))[meta(x)[[1]] == field, ] 
+  for(name in names(d)){
+    cat(sprintf('%s\n  %s\n', name, d[1, name]))
+  }
 }

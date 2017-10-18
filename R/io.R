@@ -85,26 +85,27 @@ read_type <- read_with_look_(find_type_, read_deviant_table_)
 #' Read an unnested SAND directory
 #' 
 #' @param x directory name
-#' @param data_has_header does the data file have headers?
-#' @param meta_has_header does the COLUMN file have headers?
-#' @param type_has_header does the TYPE file have headers?
-#' @param col_types data types for each column (see readr documentation)
+#' @param data_has_header whether data file has headers
+#' @param meta_has_header whether COLUMN file has headers
+#' @param type_has_header whether TYPE file has headers
+#' @param col_types data types for each column (see details)
 #' @param rdata main data file reader
 #' @param rdesc description file reader
 #' @param rmeta metadata file reader
 #' @param rtype type file reader
 #' @return a sand object
+#' @family io
 #' @export
 read_sand <- function(
   x,
-  data_has_header=TRUE,
-  meta_has_header=TRUE,
-  type_has_header=TRUE,
-  col_types=NULL,
-  rdata=read_data,
-  rdesc=read_desc,
-  rmeta=read_meta,
-  rtype=read_type
+  data_has_header = TRUE,
+  meta_has_header = TRUE,
+  type_has_header = TRUE,
+  col_types = NULL,
+  rdata = read_data,
+  rdesc = read_desc,
+  rmeta = read_meta,
+  rtype = read_type
 ){
   if(!dir.exists(x)){
     stop("x must be a directory")
@@ -154,6 +155,7 @@ read_sand <- function(
 #' 
 #' @param x a sand object
 #' @param path name of directory that will be created
+#' @family io
 #' @export
 write_sand <- function(x, path) {
   if(dir.exists(path)){
