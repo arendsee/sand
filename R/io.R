@@ -96,6 +96,9 @@ read_type <- read_with_look_(find_type_, read_deviant_table_)
 #' @return a sand object
 #' @family io
 #' @export
+#' @examples
+#' diamonds_dir <- system.file('extdata', 'diamonds', package='sandr')
+#' x <- read_sand(diamonds_dir)
 read_sand <- function(
   x=getwd(),
   data_has_header = TRUE,

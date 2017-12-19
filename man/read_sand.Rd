@@ -33,6 +33,10 @@ a sand object
 \description{
 Read an unnested SAND directory
 }
+\examples{
+diamonds_dir <- system.file('extdata', 'diamonds', package='sandr')
+x <- read_sand(diamonds_dir)
+}
 \seealso{
 Other io: \code{\link{open_sand_db}},
   \code{\link{write_sand}}, \code{\link{write_to_db}}
