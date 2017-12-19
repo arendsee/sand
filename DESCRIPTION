@@ -15,7 +15,7 @@ Description:
     methods for translating between R data and SAND.
 License: GPL-3 | file LICENSE
 Depends:
-    R (>= 3.2.0)
+    R (>= 3.4.0)
 Imports:
     dplyr,
     RSQLite,
