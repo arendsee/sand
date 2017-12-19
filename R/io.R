@@ -84,7 +84,7 @@ read_type <- read_with_look_(find_type_, read_deviant_table_)
 
 #' Read an unnested SAND directory
 #' 
-#' @param x directory name
+#' @param x directory name, defaults to working directory
 #' @param data_has_header whether data file has headers
 #' @param meta_has_header whether COLUMN file has headers
 #' @param type_has_header whether TYPE file has headers
@@ -97,7 +97,7 @@ read_type <- read_with_look_(find_type_, read_deviant_table_)
 #' @family io
 #' @export
 read_sand <- function(
-  x,
+  x=getwd(),
   data_has_header = TRUE,
   meta_has_header = TRUE,
   type_has_header = TRUE,
