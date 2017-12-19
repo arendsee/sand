@@ -15,21 +15,15 @@ devtools::install_github("arendsee/sandr")
 
 ## Example
 
+### Reading
+
 `sandr` loads data from a folder. The simplest usage of `sandr` is to just read
 a table of data. This table may be either a standard TAB-delimited file or an
 Excel spreadsheet (currently there is no support for multiple sheets, but this
 may be added in the future).
 
-
-```R
-# read the current folder, detect the tabular file (e.g. `diamonds.tsv`)
-read_sand("diamonds")
-```
-
-This will create a `data.frame` holding the `diamonds` data. This is not
-particularly useful, since the same could be done with any standard tsv reader.
-
-However, `sandr` recognizes three additional files:
+This is not particularly useful, since the same could be done with any standard
+tsv reader. However, `sandr` recognizes three additional files:
 
  1. `COLUMN.*` - a tabular file (`tsv/tab/xls/xlsx`) with a string description
     for each column in the main table
@@ -39,8 +33,13 @@ However, `sandr` recognizes three additional files:
  3. `README.*` - a text file describing the table as a whole
 
 
+```R
+diamonds_dir <- system.file('extdata', 'diamonds', package='sandr')
+d <- read_sand(diamonds_dir)
+class(d)
+```
+
 ``` R
-d <- read_sand("diamonds")
 # print the metadata associated with the column 'carat'
 field_info(d, "carat")
 
@@ -58,7 +57,41 @@ write_sand(d)
 write_to_db(d)
 ```
 
+### Writing
+
+Another usage case is to annotate a dataset built in R and then export it in
+a language agnostic manner. For example:
+
+```R
+d <- as.sand(iris)
+desc(d) <- "Dimensions of sepals and petals across three iris species"
+meta(d)$description <- c(
+    "The length of the sepal",
+    "The width of the sepal",
+    "The length of the petal",
+    "The width of the petal",
+    "The species name"
+)
+write_sand(d, 'iris')
+```
+
+Which creates the directory structure:
+
+```
+iris
+ ├── COLUMN.tsv
+ ├── README.md
+ ├── TYPE.tsv
+ └── iris.tsv
+```
+
 # TODO
+
+ - [ ] Write a specification for SAND format 
+
+ - [ ] Add a config file that specifies the SAND version, SAND flavor, whether
+       the table has headers, etc. This should be optional but automatically
+       produced when writing.
 
  - [ ] Allow the type, column, and desc file to be read from the worksheets of
        an Excel file
