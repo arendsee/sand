@@ -30,6 +30,6 @@ NULL
 #' @include access.R
 #' @include io.R
 
-# so R doesn't complain about magrittr symbols
+#' @importFrom magrittr "%>%"
 utils::globalVariables(c("%>%", "."))
 NULL
