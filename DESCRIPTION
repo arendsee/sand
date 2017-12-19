@@ -13,7 +13,7 @@ Description:
     objects is not very useful for non-R users. The 'sandr' package includes
     functions for validating, loading, and cleaning SAND data as well as
     methods for translating between R data and SAND.
-License: GPL-3 | file LICENSE
+License: GPL-3
 Depends:
     R (>= 3.4.0)
 Imports:
