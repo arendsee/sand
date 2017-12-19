@@ -4,12 +4,12 @@
 \alias{read_sand}
 \title{Read an unnested SAND directory}
 \usage{
-read_sand(x, data_has_header = TRUE, meta_has_header = TRUE,
+read_sand(x = getwd(), data_has_header = TRUE, meta_has_header = TRUE,
   type_has_header = TRUE, col_types = NULL, rdata = read_data,
   rdesc = read_desc, rmeta = read_meta, rtype = read_type)
 }
 \arguments{
-\item{x}{directory name}
+\item{x}{directory name, defaults to working directory}
 
 \item{data_has_header}{whether data file has headers}
 

@@ -1,5 +1,8 @@
 context("io.R")
 
+diamonds_dir <- system.file('extdata', 'diamonds', package='sandr')
+diamonds_headless_dir <- system.file('extdata', 'diamonds_no_header', package='sandr')
+
 test_that(
   "test basic inputs",
   {
@@ -21,7 +24,7 @@ test_that(
 test_that(
   "reading diamonds",
   {
-    expect_equal({d <- read_sand('samples/diamonds'); names(d)[1]}, 'carat')
+    expect_equal({d <- read_sand(diamonds_dir); names(d)[1]}, 'carat')
     expect_equal(d[[1]][1], 0.23)
   }
 )
@@ -32,7 +35,7 @@ test_that(
     expect_equal(
       {
         d <- read_sand(
-          'samples/diamonds_no_header',
+          diamonds_headless_dir,
           meta_has_header=FALSE,
           data_has_header=FALSE
         )
@@ -49,7 +52,7 @@ test_that(
   {
     expect_equal(
       {
-        d <- read_sand('samples/diamonds', col_types='ccccnncnnn')
+        d <- read_sand(diamonds_dir, col_types='ccccnncnnn')
         lapply(d, class)[[1]]
       },
       'character'
