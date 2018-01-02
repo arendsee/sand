@@ -24,7 +24,12 @@ So, farewell `SAND` and `sandr`, you shall not be missed.
 
 # sandr
 
-Read and write annotated tabular data.
+Read and write annotated datasets stored in file directories.
+
+`sandr` is a prototype manager for data stored according the
+**S**elf-**A**nnotating **N**ested **D**ata (SAND) specification. This spec
+mostly exists only in my head at the moment. See SAND specification below for
+more information. 
 
 ## Installation
 
@@ -33,6 +38,30 @@ You can install from github with:
 ``` R
 devtools::install_github("arendsee/sandr")
 ```
+
+## SAND Specification
+
+The SAND spec is intended to closely mirror the usual practice of storing data
+in folders along with its annotations. Datasets for most projects are stored in
+folders as a collection of tables (e.g. TAB-delimited or excel files) or
+specialized textual formats (e.g. FASTA for sequence or DOT for graphs). Beyond
+local projects, many online resources share collections of data in FTP file
+systems. The SAND spec is designed to support clean documentation and
+organization of the datasets in a manner sufficiently uniform to allow machine
+parsing.
+
+Hierarchical organization of data often falls into two strategies: group by
+topic or group by type. When grouping by topic, nesting moves from high-level
+group to individual, where the individual leaf folder contains several files of
+diverse type. When grouping by type, the data related to an individual is
+scattered, but the leaf directories have collections of files of uniform type. 
+
+The SAND specification favors type grouping. This allows type coupling between
+annotation of the data types with minimal duplication. For example, a key
+annotation for a table is the description of its columns. SAND specifies that
+this should be in a COLUMN.tsv file. Keeping all tables of the same type in one
+folder allows the tables to share a common COLUMN.tsv file in the most obvious
+way possible.
 
 ## Example
 
