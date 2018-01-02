@@ -1,5 +1,26 @@
+[![deprecated](http://badges.github.io/stability-badges/dist/deprecated.svg)](http://github.com/badges/stability-badges)
 [![Travis-CI Build Status](https://travis-ci.org/arendsee/sandr.svg?branch=master)](https://travis-ci.org/arendsee/sandr)
 [![Coverage Status](https://img.shields.io/codecov/c/github/arendsee/sandr/master.svg)](https://codecov.io/github/arendsee/sandr?branch=master)
+
+:ghost: :ghost: :ghost:
+
+`sandr` was designed to easily confer some modicum of order on the scattered
+files commonly used in data analysis and storage (e.g. on FTP sites).
+Currently, `sandr` supports tabular data. But I have been thinking about
+extending support to alternative formats. Also, there are enough ambiguities,
+even in tabular data, to require a little configuration file. So I had been
+considering adding a JSON or YAML file to describe the data.
+
+Well, this already exists. `sandr` is evolving towards a recreation of the
+[Data Package](https://frictionlessdata.io/specs/data-package/) concept. So,
+I shall kill it before it does any harm to the world.
+
+There is some nice material in this repo. I will look for pieces I can scavenge
+and apply towards better open source projects.
+
+So, farewell `SAND` and `sandr`, you shall not be missed.
+
+:ghost: :ghost: :ghost:
 
 # sandr
 
